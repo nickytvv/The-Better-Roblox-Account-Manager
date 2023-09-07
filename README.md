@@ -4,7 +4,7 @@ The "Better" Roblox Account Manager
 **✨The Better Roblox Account Manager ✨| Asset Downloader✨| Friend Checker✨| Suggestions| Open Sourced✨
 **
 
-I have yet again, begun to work on something at work but this time I might actually take the time to develop this as time goes on. My main inspiration for this project is that everyone is making too many paid tools that should honestly be free. I might explore creating accounts in bulk and possibly botting things such as visits, games, and likes. Anyway, I am getting ahead of myself but thanks for the support I hope you enjoy it. Provide some feedback and or feature suggestions. 
+I have yet again begun to work on something at work but this time I might actually take the time to develop this as time goes on. My main inspiration for this project is that everyone is making too many paid tools that should honestly be free. I might explore creating accounts in bulk and possibly botting things such as visits, games, and likes. Anyway, I am getting ahead of myself but thanks for the support I hope you enjoy it. Provide some feedback and or feature suggestions. 
 
 Discord Server For Updates On My Projects: https://discord.gg/faJRE4pAAE
 
