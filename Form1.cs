@@ -9,13 +9,12 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 using JsonException = Newtonsoft.Json.JsonException;
 using System.Text.RegularExpressions;
 using System.Net;
-using System.Windows.Forms;
 
 namespace Account_Manager
 {
     public partial class Form1 : Form
     {
-        private int scrollPosition = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,41 +29,7 @@ namespace Account_Manager
             cookieListView.DragEnter += new DragEventHandler(Form_DragEnter);
             cookieListView.DragDrop += new DragEventHandler(Form_DragDrop);
 
-            this.Load += async (sender, e) => await InitializeGitHubCodeDisplay();
         }
-
-
-        private async Task InitializeGitHubCodeDisplay()
-        {
-            string code = await FetchCodeFromGitHub();
-
-            richTextBoxEdit1.Text = code;
-            richTextBoxEdit1.Focus();
-
-            timer1.Start();
-            AddToConsole("> Internals Loaded...", Color.Green);
-        }
-
-        private int currentLine = 0;
-
-        private async Task<string> FetchCodeFromGitHub()
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    string url = "https://raw.githubusercontent.com/nickytvv/Account-Manager/main/Form1.cs";
-                    var response = await client.GetStringAsync(url);
-                    return response;
-                }
-                catch (HttpRequestException e)
-                {
-                    AddToConsole($"Request error: {e.Message}", Color.Red);
-                    return "Failed to fetch code.";
-                }
-            }
-        }
-
 
         private void Form_DragEnter(object sender, DragEventArgs e)
         {
@@ -630,7 +595,7 @@ namespace Account_Manager
             string changelogUrl = "https://nickystv.com/version/changelog.txt";
             string newVersionDownloadUrl = "https://nickystv.com/version/AccountManager.exe";
             string newDllUrl = "https://nickystv.com/version/AccountManager.dll";
-            string currentVersion = "1.1.1";
+            string currentVersion = "1.0.9";
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -685,9 +650,6 @@ del /f /q ""{currentDirectory}\AccountManager.dll""
 echo Moving new version...
 move /y ""{tempExeFilePath}"" ""{currentDirectory}\AccountManager.exe""
 move /y ""{tempDllFilePath}"" ""{currentDirectory}\AccountManager.dll""
-echo Setting permissions...
-icacls ""{currentDirectory}\AccountManager.exe"" /inheritance:e
-icacls ""{currentDirectory}\AccountManager.dll"" /inheritance:e
 echo Starting new version...
 start """" ""{currentDirectory}\AccountManager.exe""
 echo Update complete.
@@ -713,7 +675,6 @@ exit";
                 }
             }
         }
-
 
 
         private void nightLabel16_Click(object sender, EventArgs e)
@@ -1068,24 +1029,6 @@ exit";
                 {
                     AddToConsole($"An error occurred: {ex.Message}", Color.Red);
                 }
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            string[] lines = richTextBoxEdit1.Lines;
-
-            if (currentLine >= lines.Length)
-            {
-                currentLine = 0;
-                richTextBoxEdit1.SelectionStart = 0;
-                richTextBoxEdit1.ScrollToCaret();
-            }
-            else
-            {
-                richTextBoxEdit1.SelectionStart = richTextBoxEdit1.GetFirstCharIndexFromLine(currentLine);
-                richTextBoxEdit1.ScrollToCaret();
-                currentLine++;
             }
         }
     }
