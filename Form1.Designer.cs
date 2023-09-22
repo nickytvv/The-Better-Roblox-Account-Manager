@@ -104,14 +104,6 @@
             fetchAsset = new ReaLTaiizor.Controls.CrownButton();
             assetTextbox = new ReaLTaiizor.Controls.CrownTextBox();
             foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
-            tabPage4 = new TabPage();
-            button7 = new Button();
-            button6 = new Button();
-            materialListView4 = new ReaLTaiizor.Controls.MaterialListView();
-            aloneTextBox3 = new ReaLTaiizor.Controls.AloneTextBox();
-            button5 = new Button();
-            button4 = new Button();
-            nightLabel12 = new ReaLTaiizor.Controls.NightLabel();
             tabPage5 = new TabPage();
             parrotGroupBox3 = new ReaLTaiizor.Controls.ParrotGroupBox();
             spaceSeparatorVertical1 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
@@ -133,7 +125,6 @@
             foxLabel1 = new ReaLTaiizor.Controls.FoxLabel();
             tabPage6 = new TabPage();
             materialRichTextBox1 = new ReaLTaiizor.Controls.MaterialRichTextBox();
-            timerPulsate = new System.Windows.Forms.Timer(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
             airForm1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -148,7 +139,6 @@
             crownGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)assetPreview).BeginInit();
             crownGroupBox2.SuspendLayout();
-            tabPage4.SuspendLayout();
             tabPage5.SuspendLayout();
             parrotGroupBox3.SuspendLayout();
             parrotGroupBox2.SuspendLayout();
@@ -203,7 +193,6 @@
             airTabPage1.Controls.Add(tabPage3);
             airTabPage1.Controls.Add(tabPage7);
             airTabPage1.Controls.Add(tabPage8);
-            airTabPage1.Controls.Add(tabPage4);
             airTabPage1.Controls.Add(tabPage5);
             airTabPage1.Controls.Add(tabPage9);
             airTabPage1.Controls.Add(tabPage6);
@@ -252,6 +241,7 @@
             dashboardListView.TabIndex = 9;
             dashboardListView.UseCompatibleStateImageBehavior = false;
             dashboardListView.View = View.List;
+            dashboardListView.SelectedIndexChanged += dashboardListView_SelectedIndexChanged;
             // 
             // airCheckBox1
             // 
@@ -334,6 +324,7 @@
             aloneTextBox1.Text = "       search";
             aloneTextBox1.TextAlign = HorizontalAlignment.Left;
             aloneTextBox1.UseSystemPasswordChar = false;
+            aloneTextBox1.TextChanged += aloneTextBox1_TextChanged;
             // 
             // airButton2
             // 
@@ -1113,104 +1104,6 @@
             foreverLabel2.TabIndex = 1;
             foreverLabel2.Text = "Asset ID:";
             // 
-            // tabPage4
-            // 
-            tabPage4.BackColor = Color.White;
-            tabPage4.Controls.Add(button7);
-            tabPage4.Controls.Add(button6);
-            tabPage4.Controls.Add(materialListView4);
-            tabPage4.Controls.Add(aloneTextBox3);
-            tabPage4.Controls.Add(button5);
-            tabPage4.Controls.Add(button4);
-            tabPage4.Controls.Add(nightLabel12);
-            tabPage4.Location = new Point(119, 4);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(371, 281);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Activity Log";
-            // 
-            // button7
-            // 
-            button7.Location = new Point(88, 253);
-            button7.Name = "button7";
-            button7.Size = new Size(57, 23);
-            button7.TabIndex = 10;
-            button7.Text = "Export";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(11, 253);
-            button6.Name = "button6";
-            button6.Size = new Size(71, 23);
-            button6.TabIndex = 9;
-            button6.Text = "Clear Logs";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // materialListView4
-            // 
-            materialListView4.AutoSizeTable = false;
-            materialListView4.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView4.BorderStyle = BorderStyle.None;
-            materialListView4.Depth = 0;
-            materialListView4.FullRowSelect = true;
-            materialListView4.Location = new Point(3, 47);
-            materialListView4.MinimumSize = new Size(200, 100);
-            materialListView4.MouseLocation = new Point(-1, -1);
-            materialListView4.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            materialListView4.Name = "materialListView4";
-            materialListView4.OwnerDraw = true;
-            materialListView4.Size = new Size(365, 180);
-            materialListView4.TabIndex = 8;
-            materialListView4.UseCompatibleStateImageBehavior = false;
-            materialListView4.View = View.Details;
-            // 
-            // aloneTextBox3
-            // 
-            aloneTextBox3.BackColor = Color.White;
-            aloneTextBox3.EnabledCalc = true;
-            aloneTextBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            aloneTextBox3.ForeColor = Color.FromArgb(124, 133, 142);
-            aloneTextBox3.Location = new Point(200, 9);
-            aloneTextBox3.MaxLength = 32767;
-            aloneTextBox3.MultiLine = false;
-            aloneTextBox3.Name = "aloneTextBox3";
-            aloneTextBox3.ReadOnly = false;
-            aloneTextBox3.Size = new Size(97, 23);
-            aloneTextBox3.TabIndex = 7;
-            aloneTextBox3.TextAlign = HorizontalAlignment.Left;
-            aloneTextBox3.UseSystemPasswordChar = false;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(301, 9);
-            button5.Name = "button5";
-            button5.Size = new Size(57, 23);
-            button5.TabIndex = 4;
-            button5.Text = "Filter";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(111, 9);
-            button4.Name = "button4";
-            button4.Size = new Size(57, 23);
-            button4.TabIndex = 3;
-            button4.Text = "Select";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // nightLabel12
-            // 
-            nightLabel12.AutoSize = true;
-            nightLabel12.BackColor = Color.Transparent;
-            nightLabel12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            nightLabel12.ForeColor = Color.FromArgb(114, 118, 127);
-            nightLabel12.Location = new Point(16, 13);
-            nightLabel12.Name = "nightLabel12";
-            nightLabel12.Size = new Size(89, 15);
-            nightLabel12.TabIndex = 1;
-            nightLabel12.Text = "Select Account:";
-            // 
             // tabPage5
             // 
             tabPage5.BackColor = Color.White;
@@ -1288,7 +1181,7 @@
             nightLabel16.Name = "nightLabel16";
             nightLabel16.Size = new Size(31, 15);
             nightLabel16.TabIndex = 5;
-            nightLabel16.Text = "1.0.9";
+            nightLabel16.Text = "1.1.3";
             nightLabel16.Click += nightLabel16_Click;
             // 
             // nightLabel15
@@ -1527,8 +1420,6 @@
             ((System.ComponentModel.ISupportInitialize)assetPreview).EndInit();
             crownGroupBox2.ResumeLayout(false);
             crownGroupBox2.PerformLayout();
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
             tabPage5.ResumeLayout(false);
             parrotGroupBox3.ResumeLayout(false);
             parrotGroupBox3.PerformLayout();
@@ -1538,6 +1429,7 @@
             parrotGroupBox1.PerformLayout();
             tabPage9.ResumeLayout(false);
             parrotGroupBox4.ResumeLayout(false);
+            parrotGroupBox4.PerformLayout();
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -1545,7 +1437,6 @@
         #endregion
 
         private ReaLTaiizor.Forms.AirForm airForm1;
-        private System.Windows.Forms.Timer timerPulsate;
         private ContextMenuStrip contextMenuStrip1;
         private ReaLTaiizor.Controls.AirTabPage airTabPage1;
         private TabPage tabPage1;
@@ -1590,14 +1481,6 @@
         private TextBox saveCookieTxt;
         private ReaLTaiizor.Controls.NightLabel nightLabel1;
         private TabPage tabPage7;
-        private TabPage tabPage4;
-        private Button button7;
-        private Button button6;
-        private ReaLTaiizor.Controls.MaterialListView materialListView4;
-        private ReaLTaiizor.Controls.AloneTextBox aloneTextBox3;
-        private Button button5;
-        private Button button4;
-        private ReaLTaiizor.Controls.NightLabel nightLabel12;
         private TabPage tabPage5;
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox3;
         private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical1;
