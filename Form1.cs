@@ -604,7 +604,7 @@ namespace Account_Manager
 
 
 
-        private async Task CheckForUpdates() // Changed to async Task
+        private async Task CheckForUpdates()  
         {
             string latestVersionUrl = "https://nickystv.com/version/version.txt";
             string changelogUrl = "https://nickystv.com/version/changelog.txt";
@@ -981,7 +981,6 @@ exit";
                         assetPreview.Image = Image.FromStream(ms);
                     }
 
-                    // Fetch creator name and asset type (New)
                     string assetInfoUrl = $"https://api.roblox.com/marketplace/productinfo?assetId={assetId}";
                     string assetInfoData = webClient.DownloadString(assetInfoUrl);
                     JObject assetInfoObject = JObject.Parse(assetInfoData);
@@ -1008,7 +1007,7 @@ exit";
                 try
                 {
                     string pathString = Path.Combine(Directory.GetCurrentDirectory(), "Assets");
-                    string filePath = Path.Combine(pathString, $"{assetId}.rbxm"); // Change the extension based on the asset type
+                    string filePath = Path.Combine(pathString, $"{assetId}.rbxm"); 
 
                     webClient.DownloadFile(downloadUrl, filePath);
                     AddToConsole("> Asset downloaded successfully.", Color.Black);
@@ -1110,10 +1109,8 @@ exit";
         {
             string query = aloneTextBox1.Text.ToLower();
 
-            // Clear the ListView
             dashboardListView.Items.Clear();
 
-            // Add back only the items that match the query
             foreach (ListViewItem item in originalItems)
             {
                 if (item.Text.ToLower().Contains(query))
