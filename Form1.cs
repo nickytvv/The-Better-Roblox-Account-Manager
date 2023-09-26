@@ -9,20 +9,14 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 using JsonException = Newtonsoft.Json.JsonException;
 using System.Text.RegularExpressions;
 using System.Net;
-using System.Windows.Forms;
-using System.Collections.Generic;
-
 
 namespace Account_Manager
 {
     public partial class Form1 : Form
     {
-        private int scrollPosition = 0;
-        private List<ListViewItem> originalItems = new List<ListViewItem>();
 
         public Form1()
         {
-            // > Call Functions 
             InitializeComponent();
             checkCSV();
             LoadUsernamesFromCSV(dashboardListView);
@@ -30,46 +24,11 @@ namespace Account_Manager
             LoadUsernamesFromCSV(accountDetailList);
             UpdateDashboardMetrics();
             UpdateVersionLabel();
-            SetAutoScaleModeBasedOnDPI();
-            AddToConsole("> Executed Everything in Form() load...", Color.Green);
-            CheckForUpdates();
 
             cookieListView.AllowDrop = true;
             cookieListView.DragEnter += new DragEventHandler(Form_DragEnter);
             cookieListView.DragDrop += new DragEventHandler(Form_DragDrop);
 
-
-            foreach (ListViewItem item in dashboardListView.Items)
-            {
-                originalItems.Add((ListViewItem)item.Clone());
-            }
-        }
-
-        public void checkCSV()
-        {
-            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string? exeDirectory = Path.GetDirectoryName(exePath);
-
-            if (exeDirectory == null)
-            {
-                AddToConsole("> Failed to get the directory path.", Color.Red);
-                return;
-            }
-
-            string csvFilePath = Path.Combine(exeDirectory, "RobloxAccounts.csv");
-
-            if (!File.Exists(csvFilePath))
-            {
-                using (StreamWriter sw = File.CreateText(csvFilePath))
-                {
-                    sw.WriteLine("Username,Cookie,UserID");
-                }
-                AddToConsole("> Created RobloxAccounts.csv File..", Color.Green);
-            }
-            else
-            {
-                AddToConsole("> RobloxAccounts.csv File Exists.", Color.Black);
-            }
         }
 
         private void Form_DragEnter(object sender, DragEventArgs e)
@@ -107,7 +66,7 @@ namespace Account_Manager
                     while ((line = sr.ReadLine()) != null)
                     {
                         ValidateCookie(line);
-                        AddToConsole("> Validated Cookie Successfully", Color.Green);
+                        AddToConsole("Validated Cookie Successfully", Color.Green);
                     }
                 }
             }
@@ -119,6 +78,33 @@ namespace Account_Manager
         private void ParseJSON(string filePath)
         {
 
+        }
+
+        public void checkCSV()
+        {
+            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string? exeDirectory = Path.GetDirectoryName(exePath);
+
+            if (exeDirectory == null)
+            {
+                AddToConsole("> Failed to get the directory path.", Color.Red);
+                return;
+            }
+
+            string csvFilePath = Path.Combine(exeDirectory, "RobloxAccounts.csv");
+
+            if (!File.Exists(csvFilePath))
+            {
+                using (StreamWriter sw = File.CreateText(csvFilePath))
+                {
+                    sw.WriteLine("Username,Cookie,UserID");
+                }
+                AddToConsole("> Created RobloxAccounts.csv File..", Color.Green);
+            }
+            else
+            {
+                AddToConsole("> RobloxAccounts.csv File Exists.", Color.Black);
+            }
         }
 
 
@@ -603,14 +589,13 @@ namespace Account_Manager
 
 
 
-
-        private async Task CheckForUpdates()  
+        private async void CheckForUpdates()
         {
             string latestVersionUrl = "https://nickystv.com/version/version.txt";
             string changelogUrl = "https://nickystv.com/version/changelog.txt";
             string newVersionDownloadUrl = "https://nickystv.com/version/AccountManager.exe";
             string newDllUrl = "https://nickystv.com/version/AccountManager.dll";
-            string currentVersion = "1.1.3";
+            string currentVersion = "1.0.9";
 
             using (HttpClient httpClient = new HttpClient())
             {
@@ -623,13 +608,8 @@ namespace Account_Manager
 
                 try
                 {
-                    string latestVersion = await httpClient.GetStringAsync($"{latestVersionUrl}?nocache={Guid.NewGuid()}");
-                    string changelog = await httpClient.GetStringAsync($"{changelogUrl}?nocache={Guid.NewGuid()}");
-
-                    string changelogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.txt");
-                    await File.WriteAllTextAsync(changelogFilePath, changelog);
-
-                    string latestChangelog = GetLatestChangelogEntry(changelog);
+                    string latestVersion = await httpClient.GetStringAsync($"{latestVersionUrl}?nocache={Guid.NewGuid()}").ConfigureAwait(false);
+                    string changelog = await httpClient.GetStringAsync($"{changelogUrl}?nocache={Guid.NewGuid()}").ConfigureAwait(false);
 
                     if (string.IsNullOrEmpty(latestVersion))
                     {
@@ -640,7 +620,7 @@ namespace Account_Manager
 
                     if (latestVersion != currentVersion)
                     {
-                        DialogResult dialogResult = MessageBox.Show($"New version available!\n\nLatest Changelog:\n{latestChangelog}\n\nDo you want to update now?", "Update Available", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show($"New version available!\n\nChangelog:\n{changelog}\n\nDo you want to update now?", "Update Available", MessageBoxButtons.YesNo);
 
                         if (dialogResult == DialogResult.Yes)
                         {
@@ -649,51 +629,29 @@ namespace Account_Manager
 
                             using (var fs = new FileStream(tempExeFilePath, FileMode.Create))
                             {
-                                var stream = await httpClient.GetStreamAsync($"{newVersionDownloadUrl}?nocache={Guid.NewGuid()}");
-                                await stream.CopyToAsync(fs);
+                                var stream = await httpClient.GetStreamAsync($"{newVersionDownloadUrl}?nocache={Guid.NewGuid()}").ConfigureAwait(false);
+                                await stream.CopyToAsync(fs).ConfigureAwait(false);
                             }
 
                             using (var fs = new FileStream(tempDllFilePath, FileMode.Create))
                             {
-                                var stream = await httpClient.GetStreamAsync($"{newDllUrl}?nocache={Guid.NewGuid()}");
-                                await stream.CopyToAsync(fs);
+                                var stream = await httpClient.GetStreamAsync($"{newDllUrl}?nocache={Guid.NewGuid()}").ConfigureAwait(false);
+                                await stream.CopyToAsync(fs).ConfigureAwait(false);
                             }
 
                             string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-                            if (File.Exists($"{currentDirectory}\\AccountManager.exe"))
-                            {
-                                File.Delete($"{currentDirectory}\\AccountManager.exe");
-                            }
-                            if (File.Exists($"{currentDirectory}\\AccountManager.dll"))
-                            {
-                                File.Delete($"{currentDirectory}\\AccountManager.dll");
-                            }
-
-                            if (File.Exists(tempExeFilePath))
-                            {
-                                File.Move(tempExeFilePath, $"{currentDirectory}\\AccountManager.exe");
-                            }
-                            if (File.Exists(tempDllFilePath))
-                            {
-                                File.Move(tempDllFilePath, $"{currentDirectory}\\AccountManager.dll");
-                            }
-
                             string updateScript =
         $@"@echo off
 echo Updating please be patient...
 timeout /t 2 /nobreak
 echo Deleting old version...
-del /f /q ""%~dp0\AccountManager.exe""
-del /f /q ""%~dp0\AccountManager.dll""
+del /f /q ""{currentDirectory}\AccountManager.exe""
+del /f /q ""{currentDirectory}\AccountManager.dll""
 echo Moving new version...
-move /y ""%TEMP%\AccountManager_new.exe"" ""%~dp0\AccountManager.exe""
-move /y ""%TEMP%\AccountManager_new.dll"" ""%~dp0\AccountManager.dll""
-echo Setting permissions...
-icacls ""%~dp0\AccountManager.exe"" /grant Everyone:F
-icacls ""%~dp0\AccountManager.dll"" /grant Everyone:F
+move /y ""{tempExeFilePath}"" ""{currentDirectory}\AccountManager.exe""
+move /y ""{tempDllFilePath}"" ""{currentDirectory}\AccountManager.dll""
 echo Starting new version...
-start """" ""%~dp0\AccountManager.exe""
+start """" ""{currentDirectory}\AccountManager.exe""
 echo Update complete.
 exit";
 
@@ -712,27 +670,12 @@ exit";
                 }
                 catch (Exception ex)
                 {
+                    // Handle exceptions
                     AddToConsole($"An error occurred: {ex}", Color.Red);
                 }
             }
         }
 
-        private string GetLatestChangelogEntry(string changelog)
-        {
-            string[] entries = changelog.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            string latestEntry = "No changelog available";
-
-            for (int i = 0; i < entries.Length; i += 2)
-            {
-                if (i + 1 < entries.Length)
-                {
-                    latestEntry = entries[i + 1].Trim();
-                    break;
-                }
-            }
-
-            return latestEntry;
-        }
 
         private void nightLabel16_Click(object sender, EventArgs e)
         {
@@ -782,7 +725,7 @@ exit";
                 userId = await FetchUserIdByUsername(identifier);
                 if (userId == null)
                 {
-                    AddToConsole("> Failed to fetch user ID. Please try again.", Color.Red);
+                    AddToConsole("Failed to fetch user ID. Please try again.", Color.Red);
                     return;
                 }
             }
@@ -813,7 +756,7 @@ exit";
                     }
                     else
                     {
-                        AddToConsole("> Failed to fetch friend list. Please try again.", Color.Red);
+                        AddToConsole("Failed to fetch friend list. Please try again.", Color.Red);
                     }
                 }
                 catch (Exception ex)
@@ -845,12 +788,12 @@ exit";
                         }
                         else
                         {
-                            AddToConsole("> Failed to extract user ID from URL.", Color.Red);
+                            AddToConsole("Failed to extract user ID from URL.", Color.Red);
                         }
                     }
                     else
                     {
-                        AddToConsole("> Failed to fetch user profile. Please try again.", Color.Red);
+                        AddToConsole("Failed to fetch user profile. Please try again.", Color.Red);
                     }
                 }
                 catch (Exception ex)
@@ -860,6 +803,8 @@ exit";
             }
             return null;
         }
+
+
 
 
         private async Task<string> FetchAvatarUrl(string userId)
@@ -898,7 +843,7 @@ exit";
                 string selectedFriendId = selectedItem.SubItems[1].Text;
                 string selectedFriendAvatarUrl = selectedItem.SubItems[2].Text;
 
-                AddToConsole("> Avatar URL: " + selectedFriendAvatarUrl, Color.Blue);
+                AddToConsole("Avatar URL: " + selectedFriendAvatarUrl, Color.Blue);
 
                 nightLabel19.Text = selectedFriendName;
                 nightLabel20.Text = selectedFriendId;
@@ -911,7 +856,7 @@ exit";
                     }
                     else
                     {
-                        AddToConsole("> Avatar URL is empty or unknown.", Color.Orange);
+                        AddToConsole("Avatar URL is empty or unknown.", Color.Orange);
                     }
                 }
                 catch (Exception ex)
@@ -951,11 +896,11 @@ exit";
             if (!Directory.Exists(pathString))
             {
                 Directory.CreateDirectory(pathString);
-                AddToConsole("> Assets folder created successfully.", Color.Black);
+                AddToConsole("Assets folder created successfully.", Color.Black);
             }
             else
             {
-                AddToConsole("> Assets folder already exists.", Color.Black);
+                AddToConsole("Assets folder already exists.", Color.Black);
             }
         }
 
@@ -981,6 +926,7 @@ exit";
                         assetPreview.Image = Image.FromStream(ms);
                     }
 
+                    // Fetch creator name and asset type (New)
                     string assetInfoUrl = $"https://api.roblox.com/marketplace/productinfo?assetId={assetId}";
                     string assetInfoData = webClient.DownloadString(assetInfoUrl);
                     JObject assetInfoObject = JObject.Parse(assetInfoData);
@@ -1007,10 +953,10 @@ exit";
                 try
                 {
                     string pathString = Path.Combine(Directory.GetCurrentDirectory(), "Assets");
-                    string filePath = Path.Combine(pathString, $"{assetId}.rbxm"); 
+                    string filePath = Path.Combine(pathString, $"{assetId}.rbxm"); // Change the extension based on the asset type
 
                     webClient.DownloadFile(downloadUrl, filePath);
-                    AddToConsole("> Asset downloaded successfully.", Color.Black);
+                    AddToConsole("Asset downloaded successfully.", Color.Black);
                 }
                 catch (Exception ex)
                 {
@@ -1033,13 +979,13 @@ exit";
         {
             if (string.IsNullOrEmpty(suggestionTitle.Text) || suggestionTitle.Text.Length < 5)
             {
-                AddToConsole("> Suggestion Title must be at least 5 characters long.", Color.Red);
+                AddToConsole("Suggestion Title must be at least 5 characters long.", Color.Red);
                 return;
             }
 
             if (string.IsNullOrEmpty(suggestionInput.Text) || suggestionInput.Text.Length < 10)
             {
-                AddToConsole("> Suggestion must be at least 10 characters long.", Color.Red);
+                AddToConsole("Suggestion must be at least 10 characters long.", Color.Red);
                 return;
             }
 
@@ -1071,12 +1017,12 @@ exit";
 
                     if (response.IsSuccessStatusCode)
                     {
-                        AddToConsole("> Suggestion sent successfully!", Color.Green);
+                        AddToConsole("Suggestion sent successfully!", Color.Green);
                         airTabPage1.SelectedTab = tabPage6;
                     }
                     else
                     {
-                        AddToConsole($"> Failed to send suggestion. Error code: {response.StatusCode}", Color.Red);
+                        AddToConsole($"Failed to send suggestion. Error code: {response.StatusCode}", Color.Red);
                     }
                 }
                 catch (Exception ex)
@@ -1084,46 +1030,6 @@ exit";
                     AddToConsole($"An error occurred: {ex.Message}", Color.Red);
                 }
             }
-        }
-
-        public void SetAutoScaleModeBasedOnDPI()
-        {
-            float dpiX, dpiY;
-            using (Graphics graphics = this.CreateGraphics())
-            {
-                dpiX = graphics.DpiX;
-                dpiY = graphics.DpiY;
-            }
-
-            if (dpiX > 96 || dpiY > 96)
-            {
-                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            }
-            else
-            {
-                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            }
-        }
-
-        private void aloneTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            string query = aloneTextBox1.Text.ToLower();
-
-            dashboardListView.Items.Clear();
-
-            foreach (ListViewItem item in originalItems)
-            {
-                if (item.Text.ToLower().Contains(query))
-                {
-                    dashboardListView.Items.Add((ListViewItem)item.Clone());
-                }
-            }
-        }
-
-        private void dashboardListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
         }
     }
 }
