@@ -88,8 +88,21 @@
             button9 = new Button();
             textBox1 = new TextBox();
             nightLabel9 = new ReaLTaiizor.Controls.NightLabel();
+            tabPage4 = new TabPage();
+            crownLabel7 = new ReaLTaiizor.Controls.CrownLabel();
+            crownLabel6 = new ReaLTaiizor.Controls.CrownLabel();
+            airButton15 = new ReaLTaiizor.Controls.AirButton();
+            airButton9 = new ReaLTaiizor.Controls.AirButton();
+            airButton10 = new ReaLTaiizor.Controls.AirButton();
+            airButton11 = new ReaLTaiizor.Controls.AirButton();
+            airButton8 = new ReaLTaiizor.Controls.AirButton();
+            airButton7 = new ReaLTaiizor.Controls.AirButton();
+            crownLabel5 = new ReaLTaiizor.Controls.CrownLabel();
+            airButton6 = new ReaLTaiizor.Controls.AirButton();
             tabPage8 = new TabPage();
             crownGroupBox1 = new ReaLTaiizor.Controls.CrownGroupBox();
+            airCheckBox3 = new ReaLTaiizor.Controls.AirCheckBox();
+            airCheckBox2 = new ReaLTaiizor.Controls.AirCheckBox();
             foreverLabel4 = new ReaLTaiizor.Controls.ForeverLabel();
             typeLabel = new ReaLTaiizor.Controls.ForeverLabel();
             creatorLabel = new ReaLTaiizor.Controls.ForeverLabel();
@@ -104,14 +117,6 @@
             fetchAsset = new ReaLTaiizor.Controls.CrownButton();
             assetTextbox = new ReaLTaiizor.Controls.CrownTextBox();
             foreverLabel2 = new ReaLTaiizor.Controls.ForeverLabel();
-            tabPage4 = new TabPage();
-            button7 = new Button();
-            button6 = new Button();
-            materialListView4 = new ReaLTaiizor.Controls.MaterialListView();
-            aloneTextBox3 = new ReaLTaiizor.Controls.AloneTextBox();
-            button5 = new Button();
-            button4 = new Button();
-            nightLabel12 = new ReaLTaiizor.Controls.NightLabel();
             tabPage5 = new TabPage();
             parrotGroupBox3 = new ReaLTaiizor.Controls.ParrotGroupBox();
             spaceSeparatorVertical1 = new ReaLTaiizor.Controls.SpaceSeparatorVertical();
@@ -124,16 +129,8 @@
             parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             button8 = new Button();
             nightLabel13 = new ReaLTaiizor.Controls.NightLabel();
-            tabPage9 = new TabPage();
-            submitSuggestion = new ReaLTaiizor.Controls.DungeonButtonLeft();
-            parrotGroupBox4 = new ReaLTaiizor.Controls.ParrotGroupBox();
-            suggestionInput = new ReaLTaiizor.Controls.DungeonRichTextBox();
-            suggestionTitle = new ReaLTaiizor.Controls.DungeonTextBox();
-            foxLabel2 = new ReaLTaiizor.Controls.FoxLabel();
-            foxLabel1 = new ReaLTaiizor.Controls.FoxLabel();
             tabPage6 = new TabPage();
             materialRichTextBox1 = new ReaLTaiizor.Controls.MaterialRichTextBox();
-            timerPulsate = new System.Windows.Forms.Timer(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
             airForm1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -143,18 +140,16 @@
             tabPage3.SuspendLayout();
             tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)hopePictureBox1).BeginInit();
+            tabPage4.SuspendLayout();
             tabPage8.SuspendLayout();
             crownGroupBox1.SuspendLayout();
             crownGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)assetPreview).BeginInit();
             crownGroupBox2.SuspendLayout();
-            tabPage4.SuspendLayout();
             tabPage5.SuspendLayout();
             parrotGroupBox3.SuspendLayout();
             parrotGroupBox2.SuspendLayout();
             parrotGroupBox1.SuspendLayout();
-            tabPage9.SuspendLayout();
-            parrotGroupBox4.SuspendLayout();
             tabPage6.SuspendLayout();
             SuspendLayout();
             // 
@@ -181,18 +176,18 @@
             airForm1.Text = "Account Manager | nickystv.com";
             airForm1.TransparencyKey = Color.Gold;
             airForm1.Transparent = false;
-            airForm1.Click += airForm1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(435, 6);
+            pictureBox1.Location = new Point(435, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(32, 29);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // airTabPage1
             // 
@@ -202,10 +197,9 @@
             airTabPage1.Controls.Add(tabPage2);
             airTabPage1.Controls.Add(tabPage3);
             airTabPage1.Controls.Add(tabPage7);
-            airTabPage1.Controls.Add(tabPage8);
             airTabPage1.Controls.Add(tabPage4);
+            airTabPage1.Controls.Add(tabPage8);
             airTabPage1.Controls.Add(tabPage5);
-            airTabPage1.Controls.Add(tabPage9);
             airTabPage1.Controls.Add(tabPage6);
             airTabPage1.ItemSize = new Size(30, 115);
             airTabPage1.Location = new Point(3, 35);
@@ -331,9 +325,9 @@
             aloneTextBox1.ReadOnly = false;
             aloneTextBox1.Size = new Size(97, 23);
             aloneTextBox1.TabIndex = 2;
-            aloneTextBox1.Text = "       search";
             aloneTextBox1.TextAlign = HorizontalAlignment.Left;
             aloneTextBox1.UseSystemPasswordChar = false;
+            aloneTextBox1.TextChanged += aloneTextBox1_TextChanged;
             // 
             // airButton2
             // 
@@ -405,7 +399,6 @@
             airSeparator2.TabIndex = 27;
             airSeparator2.Text = "airSeparator2";
             airSeparator2.Transparent = false;
-            airSeparator2.Click += airSeparator2_Click;
             // 
             // airButton4
             // 
@@ -656,7 +649,6 @@
             button11.TabIndex = 9;
             button11.Text = "Delete";
             button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
             // 
             // cookieListView
             // 
@@ -885,7 +877,6 @@
             airSeparator3.TabIndex = 9;
             airSeparator3.Text = "airSeparator3";
             airSeparator3.Transparent = false;
-            airSeparator3.Click += airSeparator3_Click;
             // 
             // button9
             // 
@@ -912,9 +903,156 @@
             nightLabel9.ForeColor = Color.FromArgb(114, 118, 127);
             nightLabel9.Location = new Point(185, 16);
             nightLabel9.Name = "nightLabel9";
-            nightLabel9.Size = new Size(47, 15);
+            nightLabel9.Size = new Size(42, 15);
             nightLabel9.TabIndex = 4;
-            nightLabel9.Text = "User ID:";
+            nightLabel9.Text = "Player:";
+            // 
+            // tabPage4
+            // 
+            tabPage4.BackColor = Color.White;
+            tabPage4.Controls.Add(crownLabel7);
+            tabPage4.Controls.Add(crownLabel6);
+            tabPage4.Controls.Add(airButton15);
+            tabPage4.Controls.Add(airButton9);
+            tabPage4.Controls.Add(airButton10);
+            tabPage4.Controls.Add(airButton11);
+            tabPage4.Controls.Add(airButton8);
+            tabPage4.Controls.Add(airButton7);
+            tabPage4.Controls.Add(crownLabel5);
+            tabPage4.Controls.Add(airButton6);
+            tabPage4.Location = new Point(119, 4);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(371, 281);
+            tabPage4.TabIndex = 8;
+            tabPage4.Text = "Spoofer";
+            // 
+            // crownLabel7
+            // 
+            crownLabel7.AutoSize = true;
+            crownLabel7.ForeColor = Color.Red;
+            crownLabel7.Location = new Point(14, 21);
+            crownLabel7.Name = "crownLabel7";
+            crownLabel7.Size = new Size(352, 15);
+            crownLabel7.TabIndex = 24;
+            crownLabel7.Text = "*run as administrator, we are not responsible for how this is used*";
+            // 
+            // crownLabel6
+            // 
+            crownLabel6.AutoSize = true;
+            crownLabel6.ForeColor = Color.DimGray;
+            crownLabel6.Location = new Point(108, 264);
+            crownLabel6.Name = "crownLabel6";
+            crownLabel6.Size = new Size(156, 15);
+            crownLabel6.TabIndex = 23;
+            crownLabel6.Text = "Credits to SecHex on Github";
+            // 
+            // airButton15
+            // 
+            airButton15.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton15.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton15.Image = null;
+            airButton15.Location = new Point(286, 254);
+            airButton15.Name = "airButton15";
+            airButton15.NoRounding = false;
+            airButton15.Size = new Size(80, 22);
+            airButton15.TabIndex = 22;
+            airButton15.Text = "Undo All";
+            airButton15.Transparent = false;
+            airButton15.Click += airButton15_Click;
+            // 
+            // airButton9
+            // 
+            airButton9.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton9.Image = null;
+            airButton9.Location = new Point(265, 103);
+            airButton9.Name = "airButton9";
+            airButton9.NoRounding = false;
+            airButton9.Size = new Size(80, 22);
+            airButton9.TabIndex = 16;
+            airButton9.Text = "PC NAME";
+            airButton9.Transparent = false;
+            airButton9.Click += airButton9_Click;
+            // 
+            // airButton10
+            // 
+            airButton10.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton10.Image = null;
+            airButton10.Location = new Point(141, 103);
+            airButton10.Name = "airButton10";
+            airButton10.NoRounding = false;
+            airButton10.Size = new Size(80, 22);
+            airButton10.TabIndex = 15;
+            airButton10.Text = "GUID";
+            airButton10.Transparent = false;
+            airButton10.Click += airButton10_Click;
+            // 
+            // airButton11
+            // 
+            airButton11.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton11.Image = null;
+            airButton11.Location = new Point(19, 103);
+            airButton11.Name = "airButton11";
+            airButton11.NoRounding = false;
+            airButton11.Size = new Size(80, 22);
+            airButton11.TabIndex = 14;
+            airButton11.Text = "MAC";
+            airButton11.Transparent = false;
+            airButton11.Click += airButton11_Click;
+            // 
+            // airButton8
+            // 
+            airButton8.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton8.Image = null;
+            airButton8.Location = new Point(265, 53);
+            airButton8.Name = "airButton8";
+            airButton8.NoRounding = false;
+            airButton8.Size = new Size(80, 22);
+            airButton8.TabIndex = 13;
+            airButton8.Text = "DISPLAY ID";
+            airButton8.Transparent = false;
+            airButton8.Click += airButton8_Click;
+            // 
+            // airButton7
+            // 
+            airButton7.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton7.Image = null;
+            airButton7.Location = new Point(141, 53);
+            airButton7.Name = "airButton7";
+            airButton7.NoRounding = false;
+            airButton7.Size = new Size(80, 22);
+            airButton7.TabIndex = 12;
+            airButton7.Text = "MACHINE";
+            airButton7.Transparent = false;
+            airButton7.Click += airButton7_Click;
+            // 
+            // crownLabel5
+            // 
+            crownLabel5.AutoSize = true;
+            crownLabel5.ForeColor = Color.DimGray;
+            crownLabel5.Location = new Point(28, 6);
+            crownLabel5.Name = "crownLabel5";
+            crownLabel5.Size = new Size(317, 15);
+            crownLabel5.TabIndex = 11;
+            crownLabel5.Text = "Welcome to the Spoofer. A simple HWID ban work around.";
+            // 
+            // airButton6
+            // 
+            airButton6.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            airButton6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airButton6.Image = null;
+            airButton6.Location = new Point(19, 53);
+            airButton6.Name = "airButton6";
+            airButton6.NoRounding = false;
+            airButton6.Size = new Size(80, 22);
+            airButton6.TabIndex = 1;
+            airButton6.Text = "DISK";
+            airButton6.Transparent = false;
+            airButton6.Click += airButton6_Click_1;
             // 
             // tabPage8
             // 
@@ -929,6 +1067,8 @@
             // crownGroupBox1
             // 
             crownGroupBox1.BorderColor = Color.FromArgb(51, 51, 51);
+            crownGroupBox1.Controls.Add(airCheckBox3);
+            crownGroupBox1.Controls.Add(airCheckBox2);
             crownGroupBox1.Controls.Add(foreverLabel4);
             crownGroupBox1.Controls.Add(typeLabel);
             crownGroupBox1.Controls.Add(creatorLabel);
@@ -945,6 +1085,34 @@
             crownGroupBox1.TabIndex = 0;
             crownGroupBox1.TabStop = false;
             crownGroupBox1.Text = "Asset Downloader";
+            // 
+            // airCheckBox3
+            // 
+            airCheckBox3.Checked = false;
+            airCheckBox3.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8=";
+            airCheckBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airCheckBox3.Image = null;
+            airCheckBox3.Location = new Point(254, 137);
+            airCheckBox3.Name = "airCheckBox3";
+            airCheckBox3.NoRounding = false;
+            airCheckBox3.Size = new Size(92, 17);
+            airCheckBox3.TabIndex = 14;
+            airCheckBox3.Text = "Pants";
+            airCheckBox3.Transparent = false;
+            // 
+            // airCheckBox2
+            // 
+            airCheckBox2.Checked = false;
+            airCheckBox2.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8=";
+            airCheckBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            airCheckBox2.Image = null;
+            airCheckBox2.Location = new Point(254, 110);
+            airCheckBox2.Name = "airCheckBox2";
+            airCheckBox2.NoRounding = false;
+            airCheckBox2.Size = new Size(92, 17);
+            airCheckBox2.TabIndex = 13;
+            airCheckBox2.Text = "Tshirt";
+            airCheckBox2.Transparent = false;
             // 
             // foreverLabel4
             // 
@@ -986,7 +1154,7 @@
             foreverLabel3.BackColor = Color.Transparent;
             foreverLabel3.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             foreverLabel3.ForeColor = Color.LightGray;
-            foreverLabel3.Location = new Point(239, 121);
+            foreverLabel3.Location = new Point(239, 186);
             foreverLabel3.Name = "foreverLabel3";
             foreverLabel3.Size = new Size(33, 13);
             foreverLabel3.TabIndex = 9;
@@ -998,11 +1166,11 @@
             foreverLabel1.BackColor = Color.Transparent;
             foreverLabel1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             foreverLabel1.ForeColor = Color.LightGray;
-            foreverLabel1.Location = new Point(239, 98);
+            foreverLabel1.Location = new Point(252, 89);
             foreverLabel1.Name = "foreverLabel1";
-            foreverLabel1.Size = new Size(51, 13);
+            foreverLabel1.Size = new Size(94, 13);
             foreverLabel1.TabIndex = 8;
-            foreverLabel1.Text = "Creator: ";
+            foreverLabel1.Text = "Check Asset Type";
             // 
             // progressBar1
             // 
@@ -1025,7 +1193,6 @@
             progressBar1.TabIndex = 7;
             progressBar1.Text = "hopeRoundProgressBar1";
             progressBar1.ValueNumber = 0;
-            progressBar1.Click += progressBar1_Click;
             // 
             // createFolder
             // 
@@ -1099,7 +1266,6 @@
             assetTextbox.Name = "assetTextbox";
             assetTextbox.Size = new Size(155, 23);
             assetTextbox.TabIndex = 2;
-            assetTextbox.TextChanged += assetTextbox_TextChanged;
             // 
             // foreverLabel2
             // 
@@ -1112,104 +1278,6 @@
             foreverLabel2.Size = new Size(51, 13);
             foreverLabel2.TabIndex = 1;
             foreverLabel2.Text = "Asset ID:";
-            // 
-            // tabPage4
-            // 
-            tabPage4.BackColor = Color.White;
-            tabPage4.Controls.Add(button7);
-            tabPage4.Controls.Add(button6);
-            tabPage4.Controls.Add(materialListView4);
-            tabPage4.Controls.Add(aloneTextBox3);
-            tabPage4.Controls.Add(button5);
-            tabPage4.Controls.Add(button4);
-            tabPage4.Controls.Add(nightLabel12);
-            tabPage4.Location = new Point(119, 4);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(371, 281);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Activity Log";
-            // 
-            // button7
-            // 
-            button7.Location = new Point(88, 253);
-            button7.Name = "button7";
-            button7.Size = new Size(57, 23);
-            button7.TabIndex = 10;
-            button7.Text = "Export";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(11, 253);
-            button6.Name = "button6";
-            button6.Size = new Size(71, 23);
-            button6.TabIndex = 9;
-            button6.Text = "Clear Logs";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // materialListView4
-            // 
-            materialListView4.AutoSizeTable = false;
-            materialListView4.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView4.BorderStyle = BorderStyle.None;
-            materialListView4.Depth = 0;
-            materialListView4.FullRowSelect = true;
-            materialListView4.Location = new Point(3, 47);
-            materialListView4.MinimumSize = new Size(200, 100);
-            materialListView4.MouseLocation = new Point(-1, -1);
-            materialListView4.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            materialListView4.Name = "materialListView4";
-            materialListView4.OwnerDraw = true;
-            materialListView4.Size = new Size(365, 180);
-            materialListView4.TabIndex = 8;
-            materialListView4.UseCompatibleStateImageBehavior = false;
-            materialListView4.View = View.Details;
-            // 
-            // aloneTextBox3
-            // 
-            aloneTextBox3.BackColor = Color.White;
-            aloneTextBox3.EnabledCalc = true;
-            aloneTextBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            aloneTextBox3.ForeColor = Color.FromArgb(124, 133, 142);
-            aloneTextBox3.Location = new Point(200, 9);
-            aloneTextBox3.MaxLength = 32767;
-            aloneTextBox3.MultiLine = false;
-            aloneTextBox3.Name = "aloneTextBox3";
-            aloneTextBox3.ReadOnly = false;
-            aloneTextBox3.Size = new Size(97, 23);
-            aloneTextBox3.TabIndex = 7;
-            aloneTextBox3.TextAlign = HorizontalAlignment.Left;
-            aloneTextBox3.UseSystemPasswordChar = false;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(301, 9);
-            button5.Name = "button5";
-            button5.Size = new Size(57, 23);
-            button5.TabIndex = 4;
-            button5.Text = "Filter";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(111, 9);
-            button4.Name = "button4";
-            button4.Size = new Size(57, 23);
-            button4.TabIndex = 3;
-            button4.Text = "Select";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // nightLabel12
-            // 
-            nightLabel12.AutoSize = true;
-            nightLabel12.BackColor = Color.Transparent;
-            nightLabel12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            nightLabel12.ForeColor = Color.FromArgb(114, 118, 127);
-            nightLabel12.Location = new Point(16, 13);
-            nightLabel12.Name = "nightLabel12";
-            nightLabel12.Size = new Size(89, 15);
-            nightLabel12.TabIndex = 1;
-            nightLabel12.Text = "Select Account:";
             // 
             // tabPage5
             // 
@@ -1288,8 +1356,7 @@
             nightLabel16.Name = "nightLabel16";
             nightLabel16.Size = new Size(31, 15);
             nightLabel16.TabIndex = 5;
-            nightLabel16.Text = "1.0.9";
-            nightLabel16.Click += nightLabel16_Click;
+            nightLabel16.Text = "1.1.8";
             // 
             // nightLabel15
             // 
@@ -1366,107 +1433,6 @@
             nightLabel13.TabIndex = 3;
             nightLabel13.Text = "Check For Updates:";
             // 
-            // tabPage9
-            // 
-            tabPage9.BackColor = Color.White;
-            tabPage9.Controls.Add(submitSuggestion);
-            tabPage9.Controls.Add(parrotGroupBox4);
-            tabPage9.Location = new Point(119, 4);
-            tabPage9.Name = "tabPage9";
-            tabPage9.Size = new Size(371, 281);
-            tabPage9.TabIndex = 8;
-            tabPage9.Text = "Suggestions";
-            // 
-            // submitSuggestion
-            // 
-            submitSuggestion.BackColor = Color.Transparent;
-            submitSuggestion.BorderColor = Color.FromArgb(180, 180, 180);
-            submitSuggestion.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            submitSuggestion.Image = null;
-            submitSuggestion.ImageAlign = ContentAlignment.MiddleLeft;
-            submitSuggestion.InactiveColorA = Color.FromArgb(253, 252, 252);
-            submitSuggestion.InactiveColorB = Color.FromArgb(239, 237, 236);
-            submitSuggestion.Location = new Point(89, 244);
-            submitSuggestion.Name = "submitSuggestion";
-            submitSuggestion.PressedColorA = Color.FromArgb(226, 226, 226);
-            submitSuggestion.PressedColorB = Color.FromArgb(237, 237, 237);
-            submitSuggestion.PressedContourColorA = Color.FromArgb(167, 167, 167);
-            submitSuggestion.PressedContourColorB = Color.FromArgb(167, 167, 167);
-            submitSuggestion.Size = new Size(177, 30);
-            submitSuggestion.TabIndex = 5;
-            submitSuggestion.Text = "Submit Suggestion";
-            submitSuggestion.TextAlignment = StringAlignment.Center;
-            submitSuggestion.Click += submitSuggestion_Click;
-            // 
-            // parrotGroupBox4
-            // 
-            parrotGroupBox4.BorderColor = Color.DodgerBlue;
-            parrotGroupBox4.BorderWidth = 1;
-            parrotGroupBox4.Controls.Add(suggestionInput);
-            parrotGroupBox4.Controls.Add(suggestionTitle);
-            parrotGroupBox4.Controls.Add(foxLabel2);
-            parrotGroupBox4.Controls.Add(foxLabel1);
-            parrotGroupBox4.Location = new Point(3, 3);
-            parrotGroupBox4.Name = "parrotGroupBox4";
-            parrotGroupBox4.ShowText = true;
-            parrotGroupBox4.Size = new Size(363, 235);
-            parrotGroupBox4.TabIndex = 0;
-            parrotGroupBox4.TabStop = false;
-            parrotGroupBox4.TextColor = Color.DodgerBlue;
-            // 
-            // suggestionInput
-            // 
-            suggestionInput.AutoWordSelection = false;
-            suggestionInput.BackColor = Color.Transparent;
-            suggestionInput.BorderColor = Color.FromArgb(180, 180, 180);
-            suggestionInput.EdgeColor = Color.White;
-            suggestionInput.Font = new Font("Tahoma", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            suggestionInput.ForeColor = Color.FromArgb(76, 76, 76);
-            suggestionInput.Location = new Point(6, 86);
-            suggestionInput.Name = "suggestionInput";
-            suggestionInput.ReadOnly = false;
-            suggestionInput.Size = new Size(351, 143);
-            suggestionInput.TabIndex = 4;
-            suggestionInput.TextBackColor = Color.White;
-            suggestionInput.WordWrap = true;
-            // 
-            // suggestionTitle
-            // 
-            suggestionTitle.BackColor = Color.Transparent;
-            suggestionTitle.BorderColor = Color.FromArgb(180, 180, 180);
-            suggestionTitle.EdgeColor = Color.White;
-            suggestionTitle.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            suggestionTitle.ForeColor = Color.DimGray;
-            suggestionTitle.Location = new Point(135, 16);
-            suggestionTitle.MaxLength = 32767;
-            suggestionTitle.Multiline = false;
-            suggestionTitle.Name = "suggestionTitle";
-            suggestionTitle.ReadOnly = false;
-            suggestionTitle.Size = new Size(221, 28);
-            suggestionTitle.TabIndex = 3;
-            suggestionTitle.TextAlignment = HorizontalAlignment.Left;
-            suggestionTitle.UseSystemPasswordChar = false;
-            // 
-            // foxLabel2
-            // 
-            foxLabel2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            foxLabel2.ForeColor = Color.FromArgb(76, 88, 100);
-            foxLabel2.Location = new Point(6, 61);
-            foxLabel2.Name = "foxLabel2";
-            foxLabel2.Size = new Size(112, 19);
-            foxLabel2.TabIndex = 2;
-            foxLabel2.Text = "Suggestion:";
-            // 
-            // foxLabel1
-            // 
-            foxLabel1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            foxLabel1.ForeColor = Color.FromArgb(76, 88, 100);
-            foxLabel1.Location = new Point(18, 22);
-            foxLabel1.Name = "foxLabel1";
-            foxLabel1.Size = new Size(112, 19);
-            foxLabel1.TabIndex = 1;
-            foxLabel1.Text = "Suggestion Title:";
-            // 
             // tabPage6
             // 
             tabPage6.BackColor = Color.White;
@@ -1520,6 +1486,8 @@
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)hopePictureBox1).EndInit();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             tabPage8.ResumeLayout(false);
             crownGroupBox1.ResumeLayout(false);
             crownGroupBox1.PerformLayout();
@@ -1527,8 +1495,6 @@
             ((System.ComponentModel.ISupportInitialize)assetPreview).EndInit();
             crownGroupBox2.ResumeLayout(false);
             crownGroupBox2.PerformLayout();
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
             tabPage5.ResumeLayout(false);
             parrotGroupBox3.ResumeLayout(false);
             parrotGroupBox3.PerformLayout();
@@ -1536,8 +1502,6 @@
             parrotGroupBox2.PerformLayout();
             parrotGroupBox1.ResumeLayout(false);
             parrotGroupBox1.PerformLayout();
-            tabPage9.ResumeLayout(false);
-            parrotGroupBox4.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -1545,7 +1509,6 @@
         #endregion
 
         private ReaLTaiizor.Forms.AirForm airForm1;
-        private System.Windows.Forms.Timer timerPulsate;
         private ContextMenuStrip contextMenuStrip1;
         private ReaLTaiizor.Controls.AirTabPage airTabPage1;
         private TabPage tabPage1;
@@ -1590,14 +1553,6 @@
         private TextBox saveCookieTxt;
         private ReaLTaiizor.Controls.NightLabel nightLabel1;
         private TabPage tabPage7;
-        private TabPage tabPage4;
-        private Button button7;
-        private Button button6;
-        private ReaLTaiizor.Controls.MaterialListView materialListView4;
-        private ReaLTaiizor.Controls.AloneTextBox aloneTextBox3;
-        private Button button5;
-        private Button button4;
-        private ReaLTaiizor.Controls.NightLabel nightLabel12;
         private TabPage tabPage5;
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox3;
         private ReaLTaiizor.Controls.SpaceSeparatorVertical spaceSeparatorVertical1;
@@ -1642,12 +1597,18 @@
         private ReaLTaiizor.Controls.ForeverLabel typeLabel;
         private ReaLTaiizor.Controls.ForeverLabel creatorLabel;
         private ReaLTaiizor.Controls.ForeverLabel foreverLabel4;
-        private TabPage tabPage9;
-        private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox4;
-        private ReaLTaiizor.Controls.DungeonButtonLeft submitSuggestion;
-        private ReaLTaiizor.Controls.DungeonRichTextBox suggestionInput;
-        private ReaLTaiizor.Controls.DungeonTextBox suggestionTitle;
-        private ReaLTaiizor.Controls.FoxLabel foxLabel2;
-        private ReaLTaiizor.Controls.FoxLabel foxLabel1;
+        private TabPage tabPage4;
+        private ReaLTaiizor.Controls.CrownLabel crownLabel6;
+        private ReaLTaiizor.Controls.AirButton airButton15;
+        private ReaLTaiizor.Controls.AirButton airButton9;
+        private ReaLTaiizor.Controls.AirButton airButton10;
+        private ReaLTaiizor.Controls.AirButton airButton11;
+        private ReaLTaiizor.Controls.AirButton airButton8;
+        private ReaLTaiizor.Controls.AirButton airButton7;
+        private ReaLTaiizor.Controls.CrownLabel crownLabel5;
+        private ReaLTaiizor.Controls.AirButton airButton6;
+        private ReaLTaiizor.Controls.CrownLabel crownLabel7;
+        private ReaLTaiizor.Controls.AirCheckBox airCheckBox3;
+        private ReaLTaiizor.Controls.AirCheckBox airCheckBox2;
     }
 }
