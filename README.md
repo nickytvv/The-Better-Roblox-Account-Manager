@@ -1,7 +1,7 @@
 ## The "Better" Roblox Account Manager
 # Roblox Account Manager and more hopefully one day? 
 
-**Misc Release ✨The Better Roblox Account Manager ✨| Asset Downloader✨|HWID Spoofer|Open-Sourced✨**
+https:/www.nickystv.com/am/
 
 I have once again started working on this project. My main inspiration is to provide tools that should be free but are often paid. I'm exploring features like bulk account creation and botting for visits, games, and likes. Thanks for the support, and feel free to provide feedback or feature suggestions.
 
